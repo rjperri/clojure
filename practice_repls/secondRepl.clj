@@ -40,6 +40,80 @@
 
 ;;call the function!
 (symmetrize-body-parts asym-hobbit-body-parts)
+(matching-part {:name "left-boy" :size 42})
+(matching-part {:name "face" :size 42})
+(matching-part {:name "right-boy" :size 42})
+(matching-part {:nam "left-boy" :siz 42})
+
+(def parts [])
+(def part1 {:name "head" :size 42})
+part1
+(into parts (set [part1 (matching-part part1)]))
+
+(def part2 {:name "left-boy" :size 42})
+part2
+(into parts (set [part2 (matching-part part2)]))
+parts
+
+
+;;loop and recursion
+(defn bad_power
+  [x y]
+  (if (= y 0)
+    1
+    (* x (bad_power x (- y 1)))))
+(bad_power 2 4)
+
+(defn tail_power
+  ([x y] (tail_power x y 1))
+  ([x y result]
+   (if (= y 0)
+     result
+     (tail_power x (- y 1) (* x result)))))
+(tail_power 2 4)
+
+(defn recur_power
+  ([x y] (recur_power x y 1.0))
+  ([x y result]
+   (if (= y 0)
+     result
+     (recur x (- y 1) (* x result)))))
+(recur_power 2 500)
+
+(defn loop_power
+  [x y]
+  (loop [exponent y
+         current 1.0]
+    (if (= exponent 0)
+      current
+      (recur (- exponent 1) (* x current)))))
+(loop_power 2 5000)
+
+
+
+;(defn better-symmetrize-body-parts
+ ; [asym-body-parts]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ;;Time to break it down
 ;;let binds a var to value in new scope
 (let [x 1]
@@ -64,7 +138,22 @@ x
   [dog dogs-left])
 
 
+(def g 5)
+g
 
+(let [g g h g]
+  g
+  h)
+g
+
+
+(def names ["bob" "jesus" "coke" "germane" "pepsi"])
+names
+
+(let [[first_name second_name & rest_names] names]
+  first_name
+  second_name
+  rest_names)
 
 
 
