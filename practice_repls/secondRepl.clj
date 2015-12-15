@@ -89,31 +89,6 @@ parts
       (recur (- exponent 1) (* x current)))))
 (loop_power 2 5000)
 
-
-
-;(defn better-symmetrize-body-parts
- ; [asym-body-parts]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ;;Time to break it down
 ;;let binds a var to value in new scope
 (let [x 1]
@@ -154,6 +129,91 @@ names
   first_name
   second_name
   rest_names)
+
+
+
+;;Shires next top model w/ reduce
+(reduce + [1 2 3 4 5])
+(+ 1 2 3 4 5)
+(reduce + 15 [1 2 3 4])
+(+ 15 1 2 3 4)
+
+;possbile reduce impl
+(defn my-reduce
+  ([f initial coll]
+   (loop [result initial
+          remaining coll]
+     (if (empty? remaining)
+       result
+       (recur (f result (first remaining)) (rest remaining)))))
+  ([f [head & tail]]
+   (my-reduce f head tail)))
+(my-reduce + [1 2 3 4 5])
+(my-reduce + 15 [1 2 3 4])
+
+(defn better-symmetrize-body-parts
+  [asym-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part (matching-part part)])))
+          []
+          asym-body-parts))
+(def mort [123 "bob" :jeff])
+(reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part (matching-part part)])))
+          mort
+          asym-hobbit-body-parts)
+mort
+
+((fn [final-body-parts part]
+            (into final-body-parts (set [part (matching-part part)]))) mort {:name "head", :size 42})
+
+
+(matching-part {:name "left-boy" :size 42})
+
+
+;;hitting a hobbit
+(defn hit
+  [asym-body-parts]
+  (let [sym-parts (better-symmetrize-body-parts asym-body-parts)
+        body-part-size-sum (reduce + (map :size sym-parts))
+        target (rand body-part-size-sum)]
+    (loop [[part & remaining] sym-parts
+           accumulated-size (:size part)]
+      (if (> accumulated-size target)
+        part
+        (recur remaining (+ accumulated-size (:size (first remaining))))))))
+(hit asym-hobbit-body-parts)
+(hit asym-hobbit-body-parts)
+(def thang (hit asym-hobbit-body-parts))
+thang
+thang
+
+(reduce + (map :size [{:name "left-bop" :size 42} {:name "left-bop" :size 23}]))
+(rand 85)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
