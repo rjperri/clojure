@@ -69,9 +69,16 @@ Clojure hints and tricks:
  
  "M-x 'cider-jack-in'" to run/open a REPL
  "C-x C-e" to cider-evaluate-last-expression
- "C-x b" to open a REPL that has disappeared *repl name*
+ "C-x b" to open a REPL that has disappeared *repl name* aka *cider-repl*
  "C-c C-k" to compile code
  "q" to close out an error window. you can click to expand error stack
+ "M-x paredit-mode" Toggle paredit mode.
+ "M-(" Surround expression after point in parentheses (paredit-wrap-round)
+ "C-'right arrow'" Slurp; move closing parenthesis to the right to include next expression
+ "C-'left arrow'" Barf; move closing parenthesis to the left to exclude last expression
+ "C-M-f" Move to the opening parenthsis
+ "C-M-b" move to the closing Parenthesis
+
 
 
 
