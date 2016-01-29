@@ -1,0 +1,95 @@
+EMAC cheat sheet for clojure development
+Commands: "C-" Ctrl, "M-" Alt
+
+------------------------------------------------------------
+Cursor Navigation:
+
+ "C-b" back one point
+ "C-f" forward one point
+ "M-b" back a word
+ "M-f" forward a word
+
+ "C-p" previous line
+ "C-n" next line
+ 
+ "C-a" begining of line
+ "C-e" end of line
+ "M-a" begining of scentence
+ "M-e' end of scentence
+
+ "M-<" begining of file (button combo: Alt + shift + ,)
+ "M->" end of file (button combo: Alt + shift + ,)
+
+-------------------------------------------------------------
+Control Commands:
+
+ "C-u" passes a number in before a command (example; "C-u 8 C-f" moves cursor 8 spaces forward)
+ "C-g" stops a command
+
+-------------------------------------------------------------
+Buffer/file:
+ - buffers are not files, they are temporary untill saved as files
+ 
+ "C-x b" creates/opens a buffer using the minibuffer
+ "C-x k" kills the current buffer
+ "C-x C-f" creates/opens a file
+ "C-x C-s" saves a file
+
+--------------------------------------------------------------
+Line Editing (aka "copy, cut and paste", aka "killing and yanking":
+ -There is no "copy, cut, paste, or clipboard in emacs
+ -It uses the notion of "killing, yanking, and the kill ring"
+ -"Killing" something sends it to the "kill ring", where you "yank" it out.
+ 
+ "C-space" begins a select region (like "shift" in other editors)
+ "C-w" kills region
+ "C-k" kills line
+ "M-w" copies region to kill ring
+ "C-y" yanks recent item from kill ring
+ "M-y" cycles through kill ring after yank
+ "M-d" kill word
+ "C-/" undo
+ "Tab" indents
+ "C-j" new line indent
+ "M-/" hippie expand - like code completion
+ "M-\" delete all spaces around cursor
+
+---------------------------------------------------------------
+Window navigation:
+ - One frame split into multiple windows
+
+ "C-x 2" splits windows horizontaly
+ "C-x 3" splits windows verticaly
+ "C-x o" switch between windows
+ "C-x 1" delete all windows but current
+ "C-x 0" delete current window
+
+-----------------------------------------------------------------
+Clojure hints and tricks:
+ 
+ "M-x 'cider-jack-in'" to run/open a REPL
+ "C-x C-e" to cider-evaluate-last-expression
+ "C-x b" to open a REPL that has disappeared *repl name*
+ "C-c C-k" to compile code
+ "q" to close out an error window. you can click to expand error stack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
