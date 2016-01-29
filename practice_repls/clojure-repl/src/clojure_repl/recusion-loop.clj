@@ -51,4 +51,6 @@
        (reduce * x)))
 (fac_reduce_thread 5)
 
+(+ 2 4)
+
 
