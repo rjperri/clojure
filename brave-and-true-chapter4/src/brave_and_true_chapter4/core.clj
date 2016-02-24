@@ -104,8 +104,52 @@
 (assoc {} :a 3 :b 4)
 (assoc {:a 3} :a 4 :b 5)
 
+;; Lazy Seqs
+(def vampire-database
+  {0 {:makes-blood-puns? false, :has-pulse? true  :name "McFishwich"}
+   1 {:makes-blood-puns? false, :has-pulse? true  :name "McMackson"}
+   2 {:makes-blood-puns? true,  :has-pulse? false :name "Damon Salvatore"}
+   3 {:makes-blood-puns? true,  :has-pulse? true  :name "Mickey Mouse"}})
 
+(defn vampire-related-details
+  [social-security-number]
+  (Thread/sleep 1000)
+  (get vampire-database social-security-number))
 
+(defn vampire?
+  [record]
+  (and (:makes-blood-puns? record)
+       (not (:has-pulse? record))
+       record))
+
+(defn identify-vampire
+  [social-security-numbers]
+  (first (filter vampire?
+                 (map vampire-related-details social-security-numbers))))
+
+(time (vampire-related-details 0))
+(time (def mapped-details (map vampire-related-details (range 0 1000000000))))
+(time (first mapped-details))
+(time (identify-vampire (range 0 1000000000)))
+
+;; Infinite Sequences
+(concat (take 8 (repeat "na")) ["Batman!"])
+(take 3 (repeatedly (fn [] (rand-int 10))))
+
+(defn even-numbers
+  ([] (even-numbers 0))
+  ([n] (cons n (lazy-seq (even-numbers (+ n 2))))))
+(take 10 (even-numbers))
+
+;; Fibanacci using lazy-seq
+(defn fib
+  ([] (fib 1 1))
+  ([a b]
+   (lazy-seq (cons a (fib b (+ b a))))))
+(take 5 (fib))
+(take 11 (fib))
+(take 27 (fib))
+(cons 1 '(2 3 4))
 
 
 
