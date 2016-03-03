@@ -151,6 +151,22 @@
 (take 27 (fib))
 (cons 1 '(2 3 4))
 
+;; Fibanacci with memoize
+(defn fib [n]
+  (condp = n
+    0 1
+    1 1
+    (+ (fib (dec n)) (fib (- n 2)))))
+(time (fib 30)) ;; Do not run way too slow
+
+(def m-fib
+  (memoize (fn [n]
+             (condp = n
+               0 1
+               1 1
+               (+ (m-fib (dec n)) (m-fib (- n 2)))))))
+(time (m-fib 80))
+
 
 
 
