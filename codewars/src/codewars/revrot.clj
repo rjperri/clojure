@@ -1,6 +1,39 @@
 (ns codewars.revrot)
 (require '[clojure.string :as str])
 
+
+
+
+(defn break-string [strng sz]
+  (loop [v (into [] (map #(Character/getNumericValue %) strng)) coll []]
+    (cond
+      (>= 0 sz) []
+      (or (empty? v) (> sz (count v))) coll
+      :else (recur (drop sz v) (conj coll (into [] (take sz v)))))))
+
+(defn rotate [v]
+  (concat (rest v) [(first v)]))
+
+(defn cubetrans [v]
+  (if (even? (reduce + (map #(* % % %) v)))
+         (reverse v)
+         (rotate v)))
+
+(defn revrot [strng sz]
+  (let [v (break-string strng sz)]
+     (apply str (reduce concat '() (map cubetrans v)))))
+
+(revrot "733049910872815764" 6)
+
+
+(rotate [1 2 3 4 5 6])
+
+(let [f [1 2 3 4]]
+  (concat (rest f) [(first f)]))
+
+(concat '(1 2 3) '(4 5 6))
+
+
  (+ 1 2 4 5 6 7)
 
 (seq "12345")
@@ -13,11 +46,7 @@
       coll
       (recur (drop length v) (conj coll (take length v))))))
 
-(defn break-string [strng sz]
-  (loop [v (into [] (map #(Character/getNumericValue %) strng)) coll []]
-    (if (or (empty? v) (> sz (count v)))
-      coll
-      (recur (drop sz v) (conj coll (into [] (take sz v)))))))
+
 
 (break-string "123456987653" 6)
 
@@ -27,26 +56,4 @@
 
 (map #(* % % %) [9 8 7 6 5 4])
 
-(defn rotate [v]
-  (concat (rest v) [(first v)]))
-
-(defn cubetrans [v]
-  (if (even? (reduce + (map #(* % % %) v)))
-         (reverse v)
-         (rotate v)))
-
-
-
-(defn revrot [strng sz]
-  (let [v (break-string strng sz)]
-     (apply str (reduce concat '() (map cubetrans v)))))
-
-(revrot "" 6)
-
-
-(rotate [1 2 3 4 5 6])
-
-(let [f [1 2 3 4]]
-  (concat (rest f) [(first f)]))
-
-(concat '(1 2 3) '(4 5 6))
+(drop -1 [1 2 3 4])
