@@ -23,7 +23,9 @@
   (is-prime? (+ p n)))
 
 (defn step [g m n]
-  (let [prime-list (filter mem-is-prime? (range m (inc n)))]
+  (let [prime-list (->> n (inc)
+                          (range m)
+                          (filter mem-is-prime?))]
     (loop [[prime & rest-prime-list] prime-list]
       (cond
         (nil? prime) nil
@@ -32,7 +34,8 @@
 
 
 
-(time (step 1 3 1000000))
-
-(let [[t & v] []]
-  t)
+(step 2,100,110) ;;[101, 103]
+(step 4,100,110) ;;[103, 107]
+(step 6,100,110) ;;[101, 107]
+(step 8,300,400) ;;[359, 367]
+(step 10,300,400) ;;[307, 317]
