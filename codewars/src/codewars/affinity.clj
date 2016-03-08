@@ -5,7 +5,13 @@
   (let [max-sz (max (count a) (count b))]
     (if (zero? max-sz)
       1.0
-      (float (/ (count (filter true? (map #(= %1 %2) a b))) max-sz)))))
+      (as-> (map #(= %1 %2) a b) $
+            (filter true? $)
+            (count $)
+            (/ $ max-sz)
+            (float $)))))
+
+;;(float (/ (count (filter true? (map #(= %1 %2) a b))) max-sz)))))
 
 
 
